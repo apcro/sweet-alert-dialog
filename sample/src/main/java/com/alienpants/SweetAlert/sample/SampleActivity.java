@@ -1,19 +1,23 @@
 package com.alienpants.SweetAlert.sample;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
 
-import com.alienpants.SweetAlert.SweetAlert.SweetAlertDialog;
+import com.alienpants.SweetAlert.SweetAlertDialog;
 
 public class SampleActivity extends Activity implements View.OnClickListener {
 
     private int i = -1;
 
+    private Context mContext;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mContext = this;
         setContentView(R.layout.sample_activity);
         findViewById(R.id.basic_test).setOnClickListener(this);
         findViewById(R.id.under_text_test).setOnClickListener(this);
@@ -55,8 +59,8 @@ public class SampleActivity extends Activity implements View.OnClickListener {
             case R.id.warning_confirm_test:
                 new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE)
                         .setTitleText("Are you sure?")
-                        .setContentText("Won't be able to recover this file!")
-                        .setConfirmText("Yes,delete it!")
+                        .setContentText("You won't be able to recover this file!")
+                        .setConfirmText("Yes, delete it!")
                         .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
                         @Override
                         public void onClick(SweetAlertDialog sDialog) {
@@ -73,9 +77,9 @@ public class SampleActivity extends Activity implements View.OnClickListener {
             case R.id.warning_cancel_test:
                 new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE)
                         .setTitleText("Are you sure?")
-                        .setContentText("Won't be able to recover this file!")
-                        .setCancelText("No,cancel plx!")
-                        .setConfirmText("Yes,delete it!")
+                        .setContentText("You won't be able to recover this file!")
+                        .setCancelText("No, cancel")
+                        .setConfirmText("Yes, delete")
                         .showCancelButton(true)
                         .setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
                             @Override
@@ -130,25 +134,23 @@ public class SampleActivity extends Activity implements View.OnClickListener {
                         i++;
                         switch (i){
                             case 0:
-                                pDialog.getProgressHelper().setBarColor(getResources().getColor(R.color.blue_btn_bg_color));
+                                pDialog.getProgressHelper().setBarColor(mContext.getColor(R.color.blue_btn_bg_color));
                                 break;
                             case 1:
-                                pDialog.getProgressHelper().setBarColor(getResources().getColor(R.color.material_deep_teal_50));
+                                pDialog.getProgressHelper().setBarColor(mContext.getColor(R.color.material_deep_teal_50));
                                 break;
                             case 2:
-                                pDialog.getProgressHelper().setBarColor(getResources().getColor(R.color.success_stroke_color));
+                            case 6:
+                                pDialog.getProgressHelper().setBarColor(mContext.getColor(R.color.success_stroke_color));
                                 break;
                             case 3:
-                                pDialog.getProgressHelper().setBarColor(getResources().getColor(R.color.material_deep_teal_20));
+                                pDialog.getProgressHelper().setBarColor(mContext.getColor(R.color.material_deep_teal_20));
                                 break;
                             case 4:
-                                pDialog.getProgressHelper().setBarColor(getResources().getColor(R.color.material_blue_grey_80));
+                                pDialog.getProgressHelper().setBarColor(mContext.getColor(R.color.material_blue_grey_80));
                                 break;
                             case 5:
-                                pDialog.getProgressHelper().setBarColor(getResources().getColor(R.color.warning_stroke_color));
-                                break;
-                            case 6:
-                                pDialog.getProgressHelper().setBarColor(getResources().getColor(R.color.success_stroke_color));
+                                pDialog.getProgressHelper().setBarColor(mContext.getColor(R.color.warning_stroke_color));
                                 break;
                         }
                     }

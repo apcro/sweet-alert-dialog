@@ -1,8 +1,5 @@
 apply plugin: 'com.android.library'
 
-version = VERSION_NAME
-group = GROUP
-
 android {
     compileSdkVersion 29
 
@@ -16,7 +13,7 @@ android {
 }
 
 dependencies {
-    compile 'com.pnikosis:materialish-progress:1.0'
+    implementation 'com.pnikosis:materialish-progress:1.0'
 }
 
 apply from: 'https://raw.github.com/chrisbanes/gradle-mvn-push/master/gradle-mvn-push.gradle'

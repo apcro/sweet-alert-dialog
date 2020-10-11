@@ -1,8 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-package="com.alienpants.SweetAlert"
-android:versionCode="2"
-android:versionName="1.1">
+    package="com.alienpants.SweetAlert"
+    android:versionCode="2"
+    android:versionName="1.5">
 
-<application />
+    <application />
 
 </manifest>

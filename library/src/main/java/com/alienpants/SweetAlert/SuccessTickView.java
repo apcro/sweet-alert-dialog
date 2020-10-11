@@ -1,4 +1,4 @@
-package com.alienpants.SweetAlert.SweetAlert;
+package com.alienpants.SweetAlert;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -8,8 +8,6 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.Transformation;
-
-import com.alienpants.SweetAlert.R;
 
 public class SuccessTickView extends View {
     private float mDensity = -1;

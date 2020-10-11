@@ -1,4 +1,4 @@
-package com.alienpants.SweetAlert.SweetAlert;
+package com.alienpants.SweetAlert;
 
 import android.content.Context;
 import android.content.res.Resources;
