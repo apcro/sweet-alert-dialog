@@ -4,11 +4,10 @@ version = VERSION_NAME
 group = GROUP
 
 android {
-    compileSdkVersion rootProject.ext.compileSdkVersion
-    buildToolsVersion rootProject.ext.buildToolsVersion
+    compileSdkVersion 29
 
     defaultConfig {
-        minSdkVersion 9
+        minSdkVersion 26
     }
 
     lintOptions {

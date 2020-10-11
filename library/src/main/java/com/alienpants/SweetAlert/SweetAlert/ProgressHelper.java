@@ -1,7 +1,8 @@
-package cn.pedant.SweetAlert;
+package com.alienpants.SweetAlert.SweetAlert;
 
 import android.content.Context;
 
+import com.alienpants.SweetAlert.R;
 import com.pnikosis.materialishprogress.ProgressWheel;
 
 public class ProgressHelper {

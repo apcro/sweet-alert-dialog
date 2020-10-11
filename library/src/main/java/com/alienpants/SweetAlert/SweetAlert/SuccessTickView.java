@@ -1,4 +1,4 @@
-package cn.pedant.SweetAlert;
+package com.alienpants.SweetAlert.SweetAlert;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -8,6 +8,8 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.Transformation;
+
+import com.alienpants.SweetAlert.R;
 
 public class SuccessTickView extends View {
     private float mDensity = -1;
@@ -24,19 +26,23 @@ public class SuccessTickView extends View {
     private float mRightRectWidth;
     private boolean mLeftRectGrowMode;
 
+    private Context mContext;
+
     public SuccessTickView(Context context) {
         super(context);
+        mContext = context;
         init();
     }
 
     public SuccessTickView(Context context, AttributeSet attrs){
         super(context,attrs);
+        mContext = context;
         init();
     }
 
     private void init () {
         mPaint = new Paint();
-        mPaint.setColor(getResources().getColor(R.color.success_stroke_color));
+        mPaint.setColor(mContext.getColor(R.color.success_stroke_color));
         mLeftRectWidth = CONST_LEFT_RECT_W;
         mRightRectWidth = CONST_RIGHT_RECT_W;
         mLeftRectGrowMode = false;
@@ -48,7 +54,7 @@ public class SuccessTickView extends View {
         int totalW = getWidth();
         int totalH = getHeight();
         // rotate canvas first
-        canvas.rotate(45, totalW / 2, totalH / 2);
+        canvas.rotate(45, totalW / 2.0f, totalH / 2.0f);
 
         totalW /= 1.2;
         totalH /= 1.4;
@@ -58,14 +64,12 @@ public class SuccessTickView extends View {
         if (mLeftRectGrowMode) {
             leftRect.left = 0;
             leftRect.right = leftRect.left + mLeftRectWidth;
-            leftRect.top = (totalH + CONST_RIGHT_RECT_W) / 2;
-            leftRect.bottom = leftRect.top + CONST_RECT_WEIGHT;
         } else {
             leftRect.right = (totalW + CONST_LEFT_RECT_W) / 2 + CONST_RECT_WEIGHT - 1;
             leftRect.left = leftRect.right - mLeftRectWidth;
-            leftRect.top = (totalH + CONST_RIGHT_RECT_W) / 2;
-            leftRect.bottom = leftRect.top + CONST_RECT_WEIGHT;
         }
+        leftRect.top = (totalH + CONST_RIGHT_RECT_W) / 2;
+        leftRect.bottom = leftRect.top + CONST_RECT_WEIGHT;
 
         canvas.drawRoundRect(leftRect, CONST_RADIUS, CONST_RADIUS, mPaint);
 
@@ -103,7 +107,7 @@ public class SuccessTickView extends View {
                 } else if (0.7 < interpolatedTime && 0.84 >= interpolatedTime) { // shorten left rect from right, still grow right rect
                     mLeftRectGrowMode = false;
                     mLeftRectWidth = mMaxLeftRectWidth * (1 - ((interpolatedTime - 0.7f) / 0.14f));
-                    mLeftRectWidth = mLeftRectWidth < MIN_LEFT_RECT_W ? MIN_LEFT_RECT_W : mLeftRectWidth;
+                    mLeftRectWidth = Math.max(mLeftRectWidth, MIN_LEFT_RECT_W);
                     mRightRectWidth = MAX_RIGHT_RECT_W * ((interpolatedTime - 0.65f) / 0.19f);
                     invalidate();
                 } else if (0.84 < interpolatedTime && 1 >= interpolatedTime) { // restore left rect width, shorten right rect to const
